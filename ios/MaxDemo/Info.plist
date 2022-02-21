@@ -77,5 +77,7 @@
 	<string>Light</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+  <key>NScameraUsageDescription</key>
+  <string>für AR zeugs benötigt</string>
 </dict>
 </plist>
