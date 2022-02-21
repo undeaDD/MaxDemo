@@ -16,6 +16,7 @@
 		"expo": "~44.0.0",
 		"expo-blur": "~11.0.0",
 		"expo-constants": "~13.0.1",
+		"expo-dev-client": "~0.8.4",
 		"expo-device": "~4.1.0",
 		"expo-file-system": "~13.1.4",
 		"expo-haptics": "~11.1.0",
