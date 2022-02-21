@@ -1,10 +1,34 @@
-// Learn more https://docs.expo.io/guides/customizing-metro
+const {getDefaultConfig} = require('metro-config');
 
-const { getDefaultConfig } = require("expo/metro-config");
-const defaultConfig = getDefaultConfig(__dirname);
+module.exports = (async () => {
+  const {
+    resolver: {assetExts},
+  } = await getDefaultConfig();
 
-defaultConfig.resolver.assetExts.push("hdr");
-defaultConfig.resolver.assetExts.push("mtl");
-defaultConfig.resolver.assetExts.push("obj");
-
-module.exports = defaultConfig;
+  return {
+    transformer: {
+      getTransformOptions: async () => ({
+        transform: {
+          experimentalImportSupport: false,
+          inlineRequires: true,
+        },
+      }),
+    },
+    resolver: {
+      assetExts: [
+        ...assetExts,
+        'obj',
+        'mtl',
+        'mp3',
+        'JPG',
+        'vrx',
+        'hdr',
+        'gltf',
+        'glb',
+        'bin',
+        'arobject',
+        'gif',
+      ],
+    },
+  };
+})();
