@@ -18,12 +18,12 @@ export function Home({ navigation }) {
 	return (
 		<View style={Styles.container}>
 			<Viro.ViroARScene>
-				<Viro.ViroLightingEnvironment source={require("./res/tesla/garage_1k.hdr")} />
+				<Viro.ViroLightingEnvironment source={require("./assets/garage_1k.hdr")} />
 				<Viro.ViroARImageMarker target={"logo"}>
 					<Viro.Viro3DObject
 						scale={[1, 1, 1]}
-						source={require("./res/tesla/object_car.obj")}
-						resources={[require("./res/tesla/object_car_material.mtl")]}
+						source={require("./assets/object_car.obj")}
+						resources={[require("./assets/object_car_material.mtl")]}
 						type="OBJ"
 						materials={"white"}
 					/>
@@ -61,16 +61,16 @@ export function Home({ navigation }) {
 Viro.ViroMaterials.createMaterials({
 	white: {
 		lightingModel: "PBR",
-		diffuseTexture: require("./res/tesla/object_car_main_Base_Color.png"),
-		metalnessTexture: require("./res/tesla/object_car_main_Metallic.png"),
-		roughnessTexture: require("./res/tesla/object_car_main_Roughness.png"),
+		diffuseTexture: require("./assets/object_car_main_Base_Color.png"),
+		metalnessTexture: require("./assets/object_car_main_Metallic.png"),
+		roughnessTexture: require("./assets/object_car_main_Roughness.png"),
 	}
 });
 
 Viro.ViroARTrackingTargets.createTargets({
 	logo: {
-		source: require("./res/logo.png"),
+		source: require("./assets/logo.png"),
 		orientation: "Up",
-		physicalWidth: 0.165, // real world width in meters
+		physicalWidth: 0.165,
 	},
 });
