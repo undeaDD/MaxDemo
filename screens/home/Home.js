@@ -1,5 +1,4 @@
-import { View, useColorScheme } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
+import { View } from "react-native";
 import { ScannerStyles as Styles } from "./Styles";
 import {
     ViroARScene,
@@ -14,14 +13,11 @@ import {
     ViroSpotLight,
     ViroQuad,
   } from '@viro-community/react-viro';
-import { BlurView } from "expo-blur";
 import React from "react";
 
 export const HomeOptions = {
 	title: "Home",
-	headerShown: false,
-	tabBarLabel: "Home",
-	tabBarIcon: ({ color, size }) => <MaterialIcons name="home" size={size} color={color} />,
+	headerShown: true,
 };
 
 /*ViroARTrackingTargets.createTargets({
@@ -34,8 +30,6 @@ export const HomeOptions = {
 
 
 export function Home({ navigation }) {
-	const scheme = useColorScheme();
-
 	return (
 		<View style={Styles.container}>
 			<ViroARScene>
@@ -75,12 +69,6 @@ export function Home({ navigation }) {
 					/>*/}
 				{/*</ViroARImageMarker>*/}
 			</ViroARScene>
-
-			<BlurView
-				intensity={100}
-				tint={scheme === "dark" ? "dark" : "light"}
-				style={Styles.statusBarBackground}
-			/>
 		</View>
 	);
 }
