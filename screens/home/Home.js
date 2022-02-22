@@ -6,7 +6,7 @@ import { ViroARSceneNavigator } from '@viro-community/react-viro';
 export const HomeOptions = {
     title: "Home",
 	headerShown: false,
-	tabBarLabel: "Home",
+	tabBarLabel: "test",
 	tabBarIcon: ({ color, size }) => (
 		<MaterialIcons name="home" size={size} color={color} />
 	),

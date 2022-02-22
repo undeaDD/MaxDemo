@@ -10,34 +10,55 @@ import {
 } from "@viro-community/react-viro";
 
 ViroMaterials.createMaterials({
-	white: {
+	car: {
 		lightingModel: "PBR",
-		diffuseTexture: require("./../../assets/object_car_main_Base_Color.png"),
-		metalnessTexture: require("./../../assets/object_car_main_Metallic.png"),
-		roughnessTexture: require("./../../assets/object_car_main_Roughness.png"),
+		diffuseTexture:   require("./../../assets/object_car_Diffuse.png"),
+		metalnessTexture: require("./../../assets/object_car_Metallic.png"),
+		roughnessTexture: require("./../../assets/object_car_Roughness.png")
 	},
+	moon: {
+		lightingModel: "PBR",
+    	diffuseTexture: require("./../../assets/object_moon_Diffuse.png"),
+   		normalTexture:  require("./../../assets/object_moon_Normal.png")
+  }
 });
 
 ViroARTrackingTargets.createTargets({
-	logo: {
+	marker: {
 		source: require("./../../assets/marker.png"),
 		orientation: "Up",
-		physicalWidth: 0.1,
-	},
+		physicalWidth: 0.1
+	}
 });
 
+const on3DObjectClick = () => {
+	console.log("switching Viro3DObject");
+	setToggleObject(toggleObject);
+}
+
 export default HomeScene = () => {
+	const [toggleObject, setToggleObject] = useState(true);
 	return (
 		<ViroARScene>
-			<ViroLightingEnvironment source={require("./../../assets/garage_1k.hdr")} />
+			<ViroLightingEnvironment source={require("./../../assets/env.hdr")} />
 
-			<ViroARImageMarker target={"logo"} pauseUpdates={false}>
+			<ViroARImageMarker target={"marker"} pauseUpdates={false}>
 				<Viro3DObject
-					scale={[0.05, 0.05, 0.05]}
-					source={require("./../../assets/object_car.obj")}
-					resources={[require("./../../assets/object_car_2.mtl")]}
 					type="OBJ"
-					materials={"white"}
+					castsShadow={true}
+					onClick={on3DObjectClick}
+					scale={[0.05, 0.05, 0.05]}
+					materials={toggleObject ? "car" : "moon"}
+					source={
+						toggleObject ?
+						require("./../../assets/object_car.obj") : 
+						require("./../../assets/object_moon.obj")
+					}
+					resources={[
+						toggleObject ?
+						require("./../../assets/object_car_2.mtl") : 
+						require("./../../assets/object_moon_2.mtl")
+					]}
 				/>
 
 				<ViroSpotLight
@@ -51,14 +72,6 @@ export default HomeScene = () => {
 					shadowNearZ={2}
 					shadowFarZ={7}
 					shadowOpacity={0.7}
-				/>
-
-				<ViroQuad
-					rotation={[-90, 0, 0]}
-					position={[0, -0.001, 0]}
-					width={2.5}
-					height={2.5}
-					arShadowReceiver={true}
 				/>
 			</ViroARImageMarker>
 		</ViroARScene>
