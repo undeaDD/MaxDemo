@@ -97,9 +97,6 @@ PODS:
   - EXScreenOrientation (4.1.2):
     - ExpoModulesCore
     - React-Core
-  - EXSplashScreen (0.14.2):
-    - ExpoModulesCore
-    - React-Core
   - EXUpdatesInterface (0.5.1)
   - FBLazyVector (0.64.3)
   - FBReactNativeSpec (0.64.3):
@@ -406,7 +403,6 @@ DEPENDENCIES:
   - ExpoHaptics (from `../node_modules/expo-haptics/ios`)
   - ExpoModulesCore (from `../node_modules/expo-modules-core/ios`)
   - EXScreenOrientation (from `../node_modules/expo-screen-orientation/ios`)
-  - EXSplashScreen (from `../node_modules/expo-splash-screen/ios`)
   - EXUpdatesInterface (from `../node_modules/expo-updates-interface/ios`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/React/FBReactNativeSpec`)
@@ -489,8 +485,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-modules-core/ios"
   EXScreenOrientation:
     :path: "../node_modules/expo-screen-orientation/ios"
-  EXSplashScreen:
-    :path: "../node_modules/expo-splash-screen/ios"
   EXUpdatesInterface:
     :path: "../node_modules/expo-updates-interface/ios"
   FBLazyVector:
@@ -585,7 +579,6 @@ SPEC CHECKSUMS:
   ExpoHaptics: 0d0b69b2414755a4057ffad0a10315902c0ea1b7
   ExpoModulesCore: 32c0ccb47f477d330ee93db72505380adf0de09a
   EXScreenOrientation: ca9375ec57e5706128062867516da0b03a97ef64
-  EXSplashScreen: 21669e598804ee810547dbb6692c8deb5dd8dbf3
   EXUpdatesInterface: a9814f422d3cd6e7cfd260d13c27786148ece20e
   FBLazyVector: c71c5917ec0ad2de41d5d06a5855f6d5eda06971
   FBReactNativeSpec: c815ca13b0438485e5b73689c5fdf08b39ca243d
