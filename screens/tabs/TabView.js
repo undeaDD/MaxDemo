@@ -1,18 +1,19 @@
 import { BlurView } from "expo-blur";
 import Constants from "expo-constants";
 import React, { useState } from "react";
-import { useColorScheme, StyleSheet, View } from "react-native";
+
 import { Home, HomeOptions } from "./../home/Home";
-import { DefaultTheme, DarkTheme } from "@react-navigation/native";
+import { useTheme } from "@react-navigation/native";
+import { useColorScheme, StyleSheet, View } from "react-native";
 import { PlaceHolder, PlaceHolderOptions } from "./../placeholder/PlaceHolder";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 const Tab = createBottomTabNavigator();
 
 export default function TabView() {
-	const scheme = useColorScheme();
 	const [showTopView, setShowTopView] = useState(true);
-	const theme = scheme === "dark" ? DarkTheme : DefaultTheme;
+	const scheme = useColorScheme();
+	const theme = useTheme();
 
 	return (
 		<View style={StyleSheet.absoluteFill}>
