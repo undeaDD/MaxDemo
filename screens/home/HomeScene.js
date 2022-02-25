@@ -2,78 +2,67 @@ import {
 	ViroARScene,
 	ViroMaterials,
 	Viro3DObject,
-	ViroLightingEnvironment,
 	ViroARImageMarker,
 	ViroARTrackingTargets,
-	ViroSpotLight,
-	ViroQuad,
+	ViroAmbientLight,
 } from "@viro-community/react-viro";
-import { useState } from "react";
 
 export default HomeScene = () => {
-	const [toggleObject, setToggleObject] = useState(true);
-
 	ViroMaterials.createMaterials({
 		car: {
 			lightingModel: "PBR",
+			bloomThreshold: 0.5,
 			diffuseTexture: require("./../../assets/object_car_Diffuse.png"),
 			metalnessTexture: require("./../../assets/object_car_Metallic.png"),
 			roughnessTexture: require("./../../assets/object_car_Roughness.png"),
 		},
 		moon: {
 			lightingModel: "PBR",
+			bloomThreshold: 0.9,
 			diffuseTexture: require("./../../assets/object_moon_Diffuse.png"),
 			normalTexture: require("./../../assets/object_moon_Normal.png"),
 		},
 	});
 
 	ViroARTrackingTargets.createTargets({
-		marker: {
-			source: require("./../../assets/marker.png"),
+		marker1: {
+			source: require("./../../assets/marker1.png"),
 			orientation: "Up",
 			physicalWidth: 0.1,
+			type: "Image",
+		},
+		marker2: {
+			source: require("./../../assets/marker2.png"),
+			orientation: "Up",
+			physicalWidth: 0.1,
+			type: "Image",
 		},
 	});
 
-	const on3DObjectClick = () => {
-		console.log("switching Viro3DObject");
-		setToggleObject(!toggleObject);
-	};
-
 	return (
 		<ViroARScene>
-			<ViroLightingEnvironment source={require("./../../assets/env.hdr")} />
+			<ViroAmbientLight color="#ff0000" influenceBitMask={1} intensity={1000} />
+			<ViroAmbientLight color="#0000ff" influenceBitMask={2} intensity={1000000} />
 
-			<ViroARImageMarker target={"marker"} pauseUpdates={false}>
+			<ViroARImageMarker target={"marker1"} pauseUpdates={false}>
 				<Viro3DObject
 					type="OBJ"
-					castsShadow={true}
-					onClick={on3DObjectClick}
+					materials={"car"}
 					scale={[0.05, 0.05, 0.05]}
-					materials={toggleObject ? "car" : "moon"}
-					source={
-						toggleObject
-							? require("./../../assets/object_car.obj")
-							: require("./../../assets/object_moon.obj")
-					}
-					resources={[
-						toggleObject
-							? require("./../../assets/object_car_2.mtl")
-							: require("./../../assets/object_moon_2.mtl"),
-					]}
+					lightReceivingBitMask={1}
+					source={require("./../../assets/object_car.obj")}
+					resources={[require("./../../assets/object_car_2.mtl")]}
 				/>
+			</ViroARImageMarker>
 
-				<ViroSpotLight
-					innerAngle={5}
-					outerAngle={25}
-					direction={[0, -1, 0]}
-					position={[0, 5, 1]}
-					color="#ffffff"
-					castsShadow={true}
-					shadowMapSize={2048}
-					shadowNearZ={2}
-					shadowFarZ={7}
-					shadowOpacity={0.7}
+			<ViroARImageMarker target={"marker2"} pauseUpdates={false}>
+				<Viro3DObject
+					type="OBJ"
+					materials={"moon"}
+					scale={[0.05, 0.05, 0.05]}
+					lightReceivingBitMask={2}
+					source={require("./../../assets/object_moon.obj")}
+					resources={[require("./../../assets/object_moon_2.mtl")]}
 				/>
 			</ViroARImageMarker>
 		</ViroARScene>
